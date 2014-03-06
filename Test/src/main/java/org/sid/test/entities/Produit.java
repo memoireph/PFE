@@ -40,7 +40,7 @@ public class Produit implements Serializable{
 	}
 	
 	public Produit() {
-		super();
+		
 	}
 	public Produit(String nomProduit, String descProduit) {
 		super();
