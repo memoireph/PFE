@@ -14,6 +14,7 @@
     <property name="password" value=""></property>
   </bean>
 
+<!-- dhdhdhdhdhdhhdhddh -->
 <bean id="persistenceUnitManager"
 class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
 <property name="persistenceXmlLocations">
