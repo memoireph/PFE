@@ -12,13 +12,13 @@ public class Produit implements Serializable{
       
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_produit")
+	@Column(name="idP")
 	private Long idProduit;
 	@NotEmpty
 	@Column(name="nom_produit")
     private String nomProduit;
 	@NotEmpty
-	@Column(name="desc_produit")
+	@Column(name="desc_produits")
     private String descProduit;
 	public Long getIdProduit() {
 		return idProduit;
