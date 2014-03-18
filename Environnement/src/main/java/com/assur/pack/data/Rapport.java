@@ -1,5 +1,13 @@
 package com.assur.pack.data;
 
-public class Rapport {
+import java.util.Date;
 
+public class Rapport {
+  
+	protected Long id_rapport;
+	protected Date date_creation;
+	protected String intitule;
+	protected String nomdoc;
+	protected String description;
+	
 }
