@@ -1,7 +1,10 @@
 package com.assur.pack.data;
 
-public class Compagnie extends Intervenant {
+import javax.persistence.Entity;
 
+@Entity
+public class Compagnie extends Intervenant {
+    
 	protected String patente;
 	protected String site;
 	

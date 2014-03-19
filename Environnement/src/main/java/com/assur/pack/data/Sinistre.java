@@ -5,19 +5,33 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Sinistre implements Serializable{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
      private Long id_sinistre;
+	@NotEmpty
      private String type_sinistre;
+	@Temporal(TemporalType.DATE)
      private Date date_sinistre;
+	@NotEmpty
      private String lieu_sinistre;
+	@Temporal(TemporalType.DATE)
      private Date date_decla;
+	@Temporal(TemporalType.DATE)
      private Date date_cloture;
      private int qualification;
+     @ManyToMany
      private List<Intervenant> intrervenant;
+     @OneToMany(mappedBy="sinistre")
      private List<Etat> etat_sinistre;
+     @OneToMany(mappedBy="sinistre")
      private List<Document_sinist> doc_sinistre;
+     @OneToOne
      private Indemnisation indemnisation;
      
      

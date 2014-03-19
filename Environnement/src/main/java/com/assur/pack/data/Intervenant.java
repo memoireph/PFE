@@ -19,10 +19,15 @@ public abstract class Intervenant implements Serializable{
 	@NotEmpty
 	@Email
 	protected String email_intr;
+	@OneToMany(mappedBy="intervenant")
 	protected List<Telephones> telephones;
+	@OneToMany(mappedBy="intervenant")
 	protected List<Domiciles> domiciles;
+	@OneToMany(mappedBy="intervenant")
 	protected List<Activites> activites;
+	@OneToMany(mappedBy="intervenant")
 	protected List<Liens> liens;
+	@OneToMany(mappedBy="intervenant")
 	protected List<Tiers> tiers;
 
 }

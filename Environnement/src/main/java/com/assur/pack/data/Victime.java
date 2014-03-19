@@ -2,13 +2,27 @@ package com.assur.pack.data;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotEmpty;
+@Entity
 public class Victime extends Intervenant {
-  
+	@NotEmpty
 	private Long num_contrat;
+	@NotEmpty
 	private String prenom;
+	@NotEmpty
 	private String CIN;
 	private String CNSS;
 	private String passeport;
+	@Temporal(TemporalType.DATE)
+	@Past
 	private Date date_naissance;
 	
 	
