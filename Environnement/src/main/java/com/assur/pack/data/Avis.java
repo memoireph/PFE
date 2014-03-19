@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Avis extends Rapport {
   
 	private String ref;
-	//@NotEmpty
+	@NotEmpty
 	private String destination;
 	@ManyToOne
 	private Personel personel;

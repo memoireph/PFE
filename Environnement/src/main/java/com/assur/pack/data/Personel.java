@@ -1,5 +1,7 @@
 package com.assur.pack.data;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +27,7 @@ public class Personel {
 	@NotEmpty
 	private String role;//gestionnaire ou regleur
 	@OneToMany(mappedBy="personel")
-	private Avis avis;
+	private List<Avis> avis;
 	@ManyToOne
 	private Compagnie compagnie;
 	
