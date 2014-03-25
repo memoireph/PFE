@@ -1,6 +1,7 @@
 package com.assur.pack.data;
 
-import java.util.List;
+
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Activites {
+public class Activites implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_acti;
@@ -19,5 +20,71 @@ public class Activites {
 	private String etat;
 	@ManyToOne
 	private Intervenant intervenant;
+	
+	
+	
+	public Activites() {
+		super();
+	}
+
+	public Activites(String activite, String profession, String fonction,
+			String etat, Intervenant intervenant) {
+		super();
+		this.activite = activite;
+		this.profession = profession;
+		this.fonction = fonction;
+		this.etat = etat;
+		this.intervenant = intervenant;
+	}
+
+	public Long getId_acti() {
+		return id_acti;
+	}
+
+	public void setId_acti(Long id_acti) {
+		this.id_acti = id_acti;
+	}
+
+	public String getActivite() {
+		return activite;
+	}
+
+	public void setActivite(String activite) {
+		this.activite = activite;
+	}
+
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+
+	public String getFonction() {
+		return fonction;
+	}
+
+	public void setFonction(String fonction) {
+		this.fonction = fonction;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	public Intervenant getIntervenant() {
+		return intervenant;
+	}
+
+	public void setIntervenant(Intervenant intervenant) {
+		this.intervenant = intervenant;
+	}
+	
+	
 	
 }
