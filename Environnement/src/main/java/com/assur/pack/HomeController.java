@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
+ * Othmane Abdelhak
  * Handles requests for the application home page.
  */
 @Controller
