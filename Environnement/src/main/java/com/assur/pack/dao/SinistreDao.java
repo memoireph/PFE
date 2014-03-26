@@ -1,6 +1,6 @@
 package com.assur.pack.dao;
-import java.util.List;
 
+import java.util.List;
 import com.assur.pack.data.*;
 
 public interface SinistreDao {
