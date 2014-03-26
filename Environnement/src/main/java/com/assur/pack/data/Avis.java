@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Avis extends Rapport {
-  
+  //juste pour test
 	private String ref;
 	@NotEmpty
 	private String destination;
