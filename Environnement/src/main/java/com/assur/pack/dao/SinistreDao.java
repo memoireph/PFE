@@ -5,7 +5,7 @@ import com.assur.pack.data.*;
 
 public interface SinistreDao {
 	
-	public void addSinistre(Sinistre S);
+	public Long addSinistre(Sinistre S);
 	public void updateSinistre(Sinistre S);
 	public void deleteSinistre(Long id_sinistre);
 	public List<Sinistre> listSinistre();
@@ -14,7 +14,7 @@ public interface SinistreDao {
 	public List<Etat> avancementSinistre(Long id_sinistre);
 	public List<SinistreH> listHistoriqueSinistre(Long id_sinistre);
 	public SinistreH getLastHistoriqueSinistre(Long id_sinistre);
-	public void addIntervenantSinistre(Long id_intr, Long id_sinistre);
+	public void addIntervenantSinistre(Intervenant intervenant, Long id_sinistre);
 
 }
 
