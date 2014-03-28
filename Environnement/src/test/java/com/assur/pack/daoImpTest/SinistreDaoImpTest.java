@@ -37,12 +37,14 @@ public class SinistreDaoImpTest {
 	
 	@Test
 	public void testGetSinistreById(){
-		
+		assertNotNull(sinistredao.getSinistreById(new Long(1)));
 	}
 	
 	@Test
 	public void testUpdateSinistre(){
-		
+		Sinistre sinistre=sinistredao.getSinistreById(new Long(1));
+		sinistre.setMode_gestion("gestion_mode");
+		sinistredao.updateSinistre(sinistre);
 		
 	}
 	
