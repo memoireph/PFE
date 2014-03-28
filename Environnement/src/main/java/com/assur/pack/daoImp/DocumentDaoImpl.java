@@ -9,7 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.assur.pack.dao.DocumentDao;
 import com.assur.pack.data.Document_sinist;
 import com.assur.pack.data.Sinistre;
+<<<<<<< HEAD
 @Transactional
+=======
+
+>>>>>>> branch 'master' of ssh://git@github.com/memoireph/PFE.git
 public class DocumentDaoImpl implements DocumentDao{
 	@PersistenceContext
     EntityManager em;
@@ -28,6 +32,7 @@ public class DocumentDaoImpl implements DocumentDao{
 	@Override
 	public Document_sinist getDocumentById(Long num_doc) {
 		return em.find(Document_sinist.class, num_doc);
+<<<<<<< HEAD
 	}
 
 	@Override
@@ -35,6 +40,8 @@ public class DocumentDaoImpl implements DocumentDao{
 		em.persist(doc);
 		return doc.getNum_doc();
 		
+=======
+>>>>>>> branch 'master' of ssh://git@github.com/memoireph/PFE.git
 	}
 
 
