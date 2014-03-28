@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class laghrissiTest {
 
+	/*
 	@Test
 	public void test() {
 		try{
@@ -18,5 +19,6 @@ public class laghrissiTest {
 		}
 		
 	}
+	*/
 
 }

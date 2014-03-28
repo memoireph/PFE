@@ -6,12 +6,14 @@ import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.assur.pack.dao.SinistreDao;
 import com.assur.pack.data.Etat;
 import com.assur.pack.data.Intervenant;
 import com.assur.pack.data.Sinistre;
 import com.assur.pack.data.SinistreH;
-
+@Transactional
 public class SinistreDaoImpl implements SinistreDao {
    @PersistenceContext
 	EntityManager em;
