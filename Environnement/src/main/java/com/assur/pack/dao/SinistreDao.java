@@ -15,6 +15,11 @@ public interface SinistreDao {
 	public List<SinistreH> listHistoriqueSinistre(Long id_sinistre);
 	public SinistreH getLastHistoriqueSinistre(Long id_sinistre);
 	public void addIntervenantSinistre(Intervenant intervenant, Long id_sinistre);
+	public void addDocument(Document_sinist D, Long id_sinistre);
+	public void addEtat(Etat E, Long id_sinistre);
+	public void addRapport(Rapport R, Long id_sinistre);
+	public List<Rapport> listRapportSinistre(Long id_sinistre);
+
 
 }
 
