@@ -33,14 +33,14 @@
   </bean>
 
   <tx:annotation-driven transaction-manager="transactionManager"/>
-<<<<<<< HEAD
+
   <context:annotation-config></context:annotation-config>
 
 <bean id="sinistredaoregleur" class="com.assur.pack.daoImp.SinistreDaoImpl"></bean>
 <bean id="documentdao" class="com.assur.pack.daoImp.DocumentDaoImpl"></bean>
 
-=======
+
   <context:annotation-config></context:annotation-config>
- <bean id="sinistredaoregleur" class="com.assur.pack.daoImp.SinistreDaoImpl"></bean>
->>>>>>> branch 'master' of ssh://git@github.com/memoireph/PFE.git
+ 
+
 </beans>

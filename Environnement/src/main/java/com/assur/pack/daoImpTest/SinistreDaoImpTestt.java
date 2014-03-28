@@ -9,7 +9,7 @@ import com.assur.pack.dao.SinistreDao;
 import com.assur.pack.data.Sinistre;
 
 
-public class SinistreDaoImpTest {
+public class SinistreDaoImpTestt {
 	@Test
 	public void testAddSinistre(){
 		try{
