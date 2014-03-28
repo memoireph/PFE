@@ -1,32 +1,30 @@
 package com.assur.pack.daoImp;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import com.assur.pack.dao.EtatDao;
 import com.assur.pack.data.Etat;
 
 public class EtatDaoImpl implements EtatDao {
 
-	@Override
-	public void addEtat(Etat E, Long id_sinistre) {
-		// TODO Auto-generated method stub
-
-	}
-
+	@PersistenceContext
+    EntityManager em;
+	
 	@Override
 	public void updateEtat(Etat E) {
-		// TODO Auto-generated method stub
-
+		em.merge(E);
 	}
 
 	@Override
 	public void deleteEtat(Long id_Etat) {
-		// TODO Auto-generated method stub
-
+        Etat etat=getEtatById(id_Etat);
+		em.remove(etat);
 	}
 
 	@Override
-	public void getEtatById(Long id_Etat) {
-		// TODO Auto-generated method stub
-
+	public Etat getEtatById(Long id_Etat) {
+       return em.find(Etat.class, id_Etat);
 	}
 
 	
