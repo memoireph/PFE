@@ -24,8 +24,7 @@ public class Domiciles implements Serializable {
 	private String ville;
 	@NotEmpty
 	private String pays;
-	@ManyToOne
-	private Intervenant intervenant;
+	
 	
 	
 	public Domiciles() {
@@ -33,14 +32,14 @@ public class Domiciles implements Serializable {
 	}
 
 	public Domiciles(String type_dom, String adresse_dom, String code_postal,
-			String ville, String pays, Intervenant intervenant) {
+			String ville, String pays) {
 		super();
 		this.type_dom = type_dom;
 		this.adresse_dom = adresse_dom;
 		this.code_postal = code_postal;
 		this.ville = ville;
 		this.pays = pays;
-		this.intervenant = intervenant;
+		
 	}
 
 	public Long getId_domicile() {
@@ -91,13 +90,6 @@ public class Domiciles implements Serializable {
 		this.pays = pays;
 	}
 
-	public Intervenant getIntervenant() {
-		return intervenant;
-	}
-
-	public void setIntervenant(Intervenant intervenant) {
-		this.intervenant = intervenant;
-	}
 	
 	
 }

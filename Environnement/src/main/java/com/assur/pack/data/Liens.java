@@ -24,8 +24,7 @@ public class Liens {
 	private Date date_debut;
 	@Temporal(TemporalType.DATE)
 	private Date date_fin;
-	@ManyToOne
-	private Intervenant intervenant;
+	
 	
 	
 	public Liens() {
@@ -33,13 +32,13 @@ public class Liens {
 	}
 
 	public Liens(String descreption, String type_lien, Date date_debut,
-			Date date_fin, Intervenant intervenant) {
+			Date date_fin) {
 		super();
 		this.descreption = descreption;
 		this.type_lien = type_lien;
 		this.date_debut = date_debut;
 		this.date_fin = date_fin;
-		this.intervenant = intervenant;
+	
 	}
 
 	public Long getId_lien() {
@@ -82,13 +81,6 @@ public class Liens {
 		this.date_fin = date_fin;
 	}
 
-	public Intervenant getIntervenant() {
-		return intervenant;
-	}
-
-	public void setIntervenant(Intervenant intervenant) {
-		this.intervenant = intervenant;
-	}
 	
 	
 	

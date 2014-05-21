@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.assur.pack.dao.SinistreDao;
 import com.assur.pack.daoImp.SinistreDaoImpl;
+import com.assur.pack.data.Etat;
 import com.assur.pack.data.Sinistre;
+import com.assur.pack.dataDTO.SinistreDTO;
 
 
 public class SinistreDaoImpTest {
@@ -48,6 +50,24 @@ public class SinistreDaoImpTest {
 		
 	}
 	
+	@Test 
+	public void testAddEtat(){
+		
+		Etat etat=new Etat("declaration",new Date(),new Date(),true,null,null);
+		sinistredao.addEtat(etat,new Long(1));
+	}
 
+	@Test 
+	public void testDTO(){
+		Sinistre sinistre=sinistredao.getSinistreById(new Long(1));
+		SinistreDTO sdto=sinistredao.createBean(sinistre);
+		assertNotNull(sdto);
+		assertNotNull(sinistredao.createSinistre(sdto));
+	}
 	
+	@Test
+	public void testGetAllSinistre(){
+		assertNotNull(sinistredao.listSinistre());
+		
+	}
 }

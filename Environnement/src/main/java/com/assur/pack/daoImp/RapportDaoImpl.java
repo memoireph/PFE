@@ -3,9 +3,11 @@ package com.assur.pack.daoImp;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.assur.pack.dao.RapportDao;
 import com.assur.pack.data.Rapport;
-
+@Transactional
 public class RapportDaoImpl implements RapportDao {
 
 	@PersistenceContext

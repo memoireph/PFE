@@ -7,9 +7,13 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Past;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Proxy;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+
 public class Sinistre implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,8 +34,10 @@ public class Sinistre implements Serializable{
      private String qualification;
      private Double reserve;
      @ManyToMany
+     @LazyCollection(LazyCollectionOption.FALSE)
      private List<Intervenant> intrervenant;
      @OneToMany(mappedBy="sinistre")
+     @LazyCollection(LazyCollectionOption.FALSE)
      private List<Etat> etat_sinistre;
      @OneToMany(mappedBy="sinistre")
      private List<Document_sinist> doc_sinistre;
@@ -39,9 +45,10 @@ public class Sinistre implements Serializable{
      private List<Rapport> rapport;
      @OneToOne
      private Indemnisation indemnisation;
-     @OneToMany(mappedBy="sinistre")
+     @OneToMany(cascade={CascadeType.REMOVE})
+ 	@JoinTable(name = "SIN_HSIN", joinColumns = @JoinColumn(name = "SIN_ID"), inverseJoinColumns = @JoinColumn(name = "H_ID"))
      private List<SinistreH> sinistreh;
-     @OneToOne
+     @ManyToOne
      private Contrat contrat;
      
      

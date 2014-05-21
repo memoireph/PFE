@@ -14,19 +14,18 @@ public class Tiers {
 	private Long code_tier;
 	private String type_tier;
 	private String infos_tier;
-	@ManyToOne
-	private Intervenant intervenant;
+	
 	
 	
 	public Tiers() {
 		super();
 	}
 
-	public Tiers(String type_tier, String infos_tier, Intervenant intervenant) {
+	public Tiers(String type_tier, String infos_tier) {
 		super();
 		this.type_tier = type_tier;
 		this.infos_tier = infos_tier;
-		this.intervenant = intervenant;
+		
 	}
 
 	public Long getCode_tier() {
@@ -53,12 +52,8 @@ public class Tiers {
 		this.infos_tier = infos_tier;
 	}
 
-	public Intervenant getIntervenant() {
-		return intervenant;
-	}
+	
 
-	public void setIntervenant(Intervenant intervenant) {
-		this.intervenant = intervenant;
-	}
+	
 	
 }

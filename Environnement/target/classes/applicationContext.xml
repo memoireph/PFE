@@ -35,12 +35,104 @@
   <tx:annotation-driven transaction-manager="transactionManager"/>
 
   <context:annotation-config></context:annotation-config>
-
-<bean id="sinistredaoregleur" class="com.assur.pack.daoImp.SinistreDaoImpl"></bean>
+<bean id="indemnisationdao" class="com.assur.pack.daoImp.IndemnisationDaoImpl"></bean>
+<bean id="sinistredaoregleur" class="com.assur.pack.daoImp.SinistreDaoImpl">
+<property name="indemdao" ref="indemnisationdao"></property>
+<property name="etatdao" ref="etatdao"></property>
+<property name="intervenantdao" ref="intervenantdao"></property>
+<property name="document" ref="documentdao"></property>
+</bean>
+<bean name="garantie" class="com.assur.pack.daoImp.GarantiesDaoImpl"></bean>
 <bean id="documentdao" class="com.assur.pack.daoImp.DocumentDaoImpl"></bean>
+<bean id="etatdao" class="com.assur.pack.daoImp.EtatDaoImpl"></bean>
+<bean id="rapportdao" class="com.assur.pack.daoImp.RapportDaoImpl"></bean>
+<bean id="contratdao" class="com.assur.pack.daoImp.ContratDaoImp">
+<property name="sdao" ref="sinistredaoregleur"></property>
+<property name="gdao" ref="garantie"></property>
+</bean>
+
+<bean id="sinistreH" class="com.assur.pack.daoImp.SinistreHDaoImp">
+<property name="sinistredao" ref="sinistredaoregleur"></property>
+</bean>
 
 
-  <context:annotation-config></context:annotation-config>
+<bean id="contratmetier" class="com.assur.pack.metierImpl.ContratMetierImpl">
+     <property name="contratdao" ref="contratdao"></property>  
+  </bean>
+  <bean id="garantiesmetier" class="com.assur.pack.metierImpl.GarantiesMetierImpl">
+   <property name="garantiesdao" ref="garantie"></property>
+  </bean>
+  
+  <bean id="activitesdao" class="com.assur.pack.daoImp.ActivitesDaoImpl"></bean>
+  <bean id="activitesmetier" class="com.assur.pack.metierImpl.ActivitesMetierImpl">
+     <property name="activitesdao" ref="activitesdao"></property>
+  </bean>
+  
+  <bean id="domicilesdao" class="com.assur.pack.daoImp.DomicilesDaoImpl"></bean>
+  <bean id="domicilesmetier" class="com.assur.pack.metierImpl.DomicilesMetierImpl">
+     <property name="domicilesdao" ref="domicilesdao"></property>
+  </bean>
+  
+  <bean id="liensdao" class="com.assur.pack.daoImp.LiensDaoImpl"></bean>
+  <bean id="liensmetier" class="com.assur.pack.metierImpl.LiensMetierImpl">
+    <property name="liensdao" ref="liensdao"></property>
+  </bean>
+  
+  <bean id="telephonesdao" class="com.assur.pack.daoImp.TelephonesDaoImpl"></bean>
+  <bean id="telephonesmetier" class="com.assur.pack.metierImpl.TelephonesMetierImpl">
+     <property name="telephonesdao" ref="telephonesdao"></property>
+  </bean>
+  
+  <bean id="tiersdao" class="com.assur.pack.daoImp.TiersDaoImpl"></bean>
+  <bean id="tiersmetier" class="com.assur.pack.metierImpl.TiersMetierImpl">
+     <property name="tiersdao" ref="tiersdao"></property>
+  </bean>
+  
+  
+  
+  <bean id="intervenantdao" class="com.assur.pack.daoImp.IntervenantDaoImpl">
+        <property name="activitesdao" ref="activitesdao"></property>
+        <property name="domicilesdao" ref="domicilesdao"></property>
+        <property name="liensdao" ref="liensdao"></property>
+        <property name="telephonesdao" ref="telephonesdao"></property>
+        <property name="tiersdao" ref="tiersdao"></property>
+        <property name="sinistredao" ref="sinistredaoregleur"></property>
+  </bean>
+  
+  <bean id="intervenantmetier" class="com.assur.pack.metierImpl.IntervenantMetierImpl">
+   <property name="intervenantdao" ref="intervenantdao"></property>
+  </bean> 
+  
  
+  <bean id="rapportmetier" class="com.assur.pack.metierImpl.RapportMetierImpl">
+   <property name="rapportdao" ref="rapportdao"></property>
+  </bean>
+   
+  <bean id="personeldao" class="com.assur.pack.daoImp.PersonelDaoImpl">
+      <property name="rapportdao" ref="rapportdao"></property>
+      <property name="intervenantdao" ref="intervenantdao"></property>
+  </bean>
+  <bean id="personelmetier" class="com.assur.pack.metierImpl.PersonelMetierImpl">
+     <property name="personeldao" ref="personeldao"></property>
+  </bean> 
 
+  <bean id="sinistremetier" class="com.assur.pack.metierImpl.SinistreMetierImpl">
+   <property name="sinistredao" ref="sinistredaoregleur"></property>
+  </bean>
+  
+  
+  <bean id="chequedao" class="com.assur.pack.daoImp.ChequeDaoImpl"></bean>
+  <bean id="chequemetier" class="com.assur.pack.metierImpl.ChequeMetierImpl">
+     <property name="chequedao" ref="chequedao"></property>
+  </bean>
+  
+  <bean id="quittancedao" class="com.assur.pack.daoImp.QuittanceDaoImpl"></bean>
+  <bean id="quittancemetier" class="com.assur.pack.metierImpl.QuittanceMetierImpl">
+    <property name="quittancedao" ref="quittancedao"></property>
+  </bean>
+  
+  <!-- Bean de conversion dozer -->
+ <bean id="org.dozer.mapper" class="org.dozer.DozerBeanMapper"/>
+ 
+ 
 </beans>

@@ -2,6 +2,7 @@ package com.assur.pack.dao;
 
 import java.util.List;
 import com.assur.pack.data.*;
+import com.assur.pack.dataDTO.SinistreDTO;
 
 public interface SinistreDao {
 	
@@ -19,6 +20,10 @@ public interface SinistreDao {
 	public void addEtat(Etat E, Long id_sinistre);
 	public void addRapport(Rapport R, Long id_sinistre);
 	public List<Rapport> listRapportSinistre(Long id_sinistre);
+	public SinistreDTO createBean(Sinistre sinistre);
+	public Sinistre createSinistre(SinistreDTO sinsitredto);
+	void addSinistreH(SinistreH h, Long id_sinistre);
+	
 
 
 }

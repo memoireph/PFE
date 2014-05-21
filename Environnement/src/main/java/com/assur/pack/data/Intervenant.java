@@ -19,15 +19,20 @@ public abstract class Intervenant implements Serializable{
 	@NotEmpty
 	@Email
 	protected String email_intr;
-	@OneToMany(mappedBy="intervenant")
+	@OneToMany(cascade={CascadeType.REMOVE})
+	@JoinTable(name = "INT_TEL", joinColumns = @JoinColumn(name = "INT_ID"), inverseJoinColumns = @JoinColumn(name = "TEL_ID"))
 	protected List<Telephones> telephones;
-	@OneToMany(mappedBy="intervenant")
+	@OneToMany(cascade={CascadeType.REMOVE})
+	@JoinTable(name = "INT_DOM", joinColumns = @JoinColumn(name = "INT_ID"), inverseJoinColumns = @JoinColumn(name = "DOM_ID"))
 	protected List<Domiciles> domiciles;
-	@OneToMany(mappedBy="intervenant")
+	@OneToMany(cascade={CascadeType.REMOVE})
+	@JoinTable(name = "INT_ACT", joinColumns = @JoinColumn(name = "INT_ID"), inverseJoinColumns = @JoinColumn(name = "ACT_ID"))
 	protected List<Activites> activites;
-	@OneToMany(mappedBy="intervenant")
+	@OneToMany(cascade={CascadeType.REMOVE})
+	@JoinTable(name = "INT_LIEN", joinColumns = @JoinColumn(name = "INT_ID"), inverseJoinColumns = @JoinColumn(name = "LIEN_ID"))
 	protected List<Liens> liens;
-	@OneToMany(mappedBy="intervenant")
+	@OneToMany(cascade={CascadeType.REMOVE})
+	@JoinTable(name = "INT_TIER", joinColumns = @JoinColumn(name = "INT_ID"), inverseJoinColumns = @JoinColumn(name = "TIER_ID"))
 	protected List<Tiers> tiers;
 	@ManyToMany
 	protected List<Sinistre> sinistre;

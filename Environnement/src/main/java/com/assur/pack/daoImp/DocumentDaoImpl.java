@@ -7,15 +7,17 @@ import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.assur.pack.dao.DocumentDao;
+import com.assur.pack.dao.SinistreDao;
 import com.assur.pack.data.Document_sinist;
 import com.assur.pack.data.Sinistre;
+import com.assur.pack.dataDTO.DocumentDTO;
 
 @Transactional
 
 public class DocumentDaoImpl implements DocumentDao{
 	@PersistenceContext
     EntityManager em;
-
+	private SinistreDao sinistredao;
 	@Override
 	public void updateDocument(Document_sinist D) {
 		em.merge(D);
@@ -41,5 +43,25 @@ public class DocumentDaoImpl implements DocumentDao{
 
 	}
 
+	@Override
+	public DocumentDTO getDocumentDTO(Document_sinist d) {
+		DocumentDTO dDTO=new DocumentDTO();
+		dDTO.setLibelle(d.getLibelle());
+		dDTO.setNum_doc(d.getNum_doc());
+		dDTO.setType(d.getType());
+		dDTO.setSinistreid(d.getSinistre().getId_sinistre());
+		return dDTO;
+	}
 
+	@Override
+	public Document_sinist createBeanDocument(DocumentDTO dDTO) {
+		Document_sinist d=new Document_sinist();
+		d.setLibelle(dDTO.getLibelle());
+		d.setNum_doc(dDTO.getNum_doc());
+		d.setType(dDTO.getType());
+		d.setSinistre(sinistredao.getSinistreById(dDTO.getSinistreid()));
+		return d;
+	}
+	
+	
 }

@@ -13,6 +13,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Victime extends Intervenant {
 	@NotEmpty
 	private String prenom;
+	private String civilite;
+	public String getCivilite() {
+		return civilite;
+	}
+
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
+	}
+
 	@NotEmpty
 	private String CIN;
 	private String CNSS;
@@ -20,22 +29,20 @@ public class Victime extends Intervenant {
 	@Temporal(TemporalType.DATE)
 	@Past
 	private Date date_naissance;
-	@OneToOne
-	private Contrat contrat;
 	
 	public Victime() {
 		super();
 	}
 
 	public Victime(String prenom, String cIN, String cNSS, String passeport,
-			Date date_naissance, Contrat contrat) {
+			Date date_naissance) {
 		super();
 		this.prenom = prenom;
 		CIN = cIN;
 		CNSS = cNSS;
 		this.passeport = passeport;
 		this.date_naissance = date_naissance;
-		this.contrat = contrat;
+		
 	}
 
 	public String getPrenom() {
@@ -78,13 +85,7 @@ public class Victime extends Intervenant {
 		this.date_naissance = date_naissance;
 	}
 
-	public Contrat getContrat() {
-		return contrat;
-	}
-
-	public void setContrat(Contrat contrat) {
-		this.contrat = contrat;
-	}
+	
 	
 	
 	

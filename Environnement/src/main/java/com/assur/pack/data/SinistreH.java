@@ -16,15 +16,15 @@ public class SinistreH implements Serializable {
 	@Id
 	@Temporal(TemporalType.DATE)
      private Date date_historique;
-	@NotEmpty
+	
 	 private String modifie_par;
-	@NotEmpty
+	
     private String mode_gestion;
-	@NotEmpty
+	
      private String type_sinistre;
 	@Temporal(TemporalType.DATE)
      private Date date_sinistre;
-	@NotEmpty
+
      private String lieu_sinistre;
 	@Temporal(TemporalType.DATE)
      private Date date_decla;
@@ -33,8 +33,9 @@ public class SinistreH implements Serializable {
 	 private String statut;
      private String qualification;
      private Double reserve;
-     @ManyToOne
-     private Sinistre sinistre;
+
+	//private Sinistre sinistre;
+   
      
      
 	public SinistreH() {
@@ -44,8 +45,7 @@ public class SinistreH implements Serializable {
 	public SinistreH(Date date_historique, String modifie_par,
 			String mode_gestion, String type_sinistre, Date date_sinistre,
 			String lieu_sinistre, Date date_decla, Date date_cloture,
-			String statut, String qualification, Double reserve,
-			Sinistre sinistre) {
+			String statut, String qualification, Double reserve) {
 		super();
 		this.date_historique = date_historique;
 		this.modifie_par = modifie_par;
@@ -58,7 +58,7 @@ public class SinistreH implements Serializable {
 		this.statut = statut;
 		this.qualification = qualification;
 		this.reserve = reserve;
-		this.sinistre = sinistre;
+		
 	}
 
 	public Date getDate_historique() {
@@ -148,15 +148,12 @@ public class SinistreH implements Serializable {
 	public void setReserve(Double reserve) {
 		this.reserve = reserve;
 	}
-
-	public Sinistre getSinistre() {
-		return sinistre;
-	}
-
+	/*
 	public void setSinistre(Sinistre sinistre) {
 		this.sinistre = sinistre;
 	}
-     
+	
+   */  
      
 
 }

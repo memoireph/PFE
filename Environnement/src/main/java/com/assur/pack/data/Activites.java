@@ -18,9 +18,7 @@ public class Activites implements Serializable{
 	private String profession;
 	private String fonction;
 	private String etat;
-	@ManyToOne
-	private Intervenant intervenant;
-	
+
 	
 	
 	public Activites() {
@@ -28,13 +26,13 @@ public class Activites implements Serializable{
 	}
 
 	public Activites(String activite, String profession, String fonction,
-			String etat, Intervenant intervenant) {
+			String etat) {
 		super();
 		this.activite = activite;
 		this.profession = profession;
 		this.fonction = fonction;
 		this.etat = etat;
-		this.intervenant = intervenant;
+		
 	}
 
 	public Long getId_acti() {
@@ -77,13 +75,8 @@ public class Activites implements Serializable{
 		this.etat = etat;
 	}
 
-	public Intervenant getIntervenant() {
-		return intervenant;
-	}
 
-	public void setIntervenant(Intervenant intervenant) {
-		this.intervenant = intervenant;
-	}
+
 	
 	
 	

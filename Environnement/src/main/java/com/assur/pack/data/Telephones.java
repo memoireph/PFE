@@ -12,19 +12,20 @@ public class Telephones implements Serializable{
      @Size(min=10)
 	private String num_tel;
 	private String type_tel;
+	/*
 	@ManyToOne
 	private Intervenant intervenant;
 	
-	
+	*/
 	public Telephones() {
 		super();
 	}
 
-	public Telephones(String num_tel, String type_tel, Intervenant intervenant) {
+	public Telephones(String num_tel, String type_tel) {
 		super();
 		this.num_tel = num_tel;
 		this.type_tel = type_tel;
-		this.intervenant = intervenant;
+		
 	}
 
 	public String getNum_tel() {
@@ -43,12 +44,6 @@ public class Telephones implements Serializable{
 		this.type_tel = type_tel;
 	}
 
-	public Intervenant getIntervenant() {
-		return intervenant;
-	}
-
-	public void setIntervenant(Intervenant intervenant) {
-		this.intervenant = intervenant;
-	}
+	
 	
 }
