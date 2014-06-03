@@ -1,5 +1,8 @@
 package com.assur.pack.daoImp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -44,5 +47,14 @@ public class EtatDaoImpl implements EtatDao {
 	}
 
 	
-
+	@Override
+	public List<Etat> etatvalide(List<Etat> etats) {
+		List<Etat> etatvalide= new ArrayList<Etat>();
+		for(Etat e: etats){
+			if(e.isRealiser()){
+				etatvalide.add(e);
+			}
+		}
+		return etatvalide;
+	}
 }

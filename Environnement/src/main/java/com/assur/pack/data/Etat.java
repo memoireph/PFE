@@ -26,9 +26,11 @@ public class Etat implements Serializable{
 	private boolean realiser;
 	@ManyToOne
 	private Intervenant intervenant;
+	private int ordre;
 	@ManyToOne
 	private Sinistre sinistre;
-	
+	@ManyToOne
+	private Personel personel;
 	public Etat() {
 		super();
 	}
@@ -41,6 +43,17 @@ public class Etat implements Serializable{
 		this.echeance = echeance;
 		this.realiser = realiser;
 		this.intervenant = intervenant;
+		this.sinistre = sinistre;
+	}
+
+	public Etat(String intitule, int ordre, Date date_realisation,
+			boolean realiser, Personel personel, Sinistre sinistre) {
+		super();
+		this.intitule = intitule;
+		this.ordre = ordre;
+		this.date_realisation = date_realisation;
+		this.realiser = realiser;
+		this.personel = personel;
 		this.sinistre = sinistre;
 	}
 
@@ -98,6 +111,14 @@ public class Etat implements Serializable{
 
 	public void setSinistre(Sinistre sinistre) {
 		this.sinistre = sinistre;
+	}
+
+	public int getOrdre() {
+		return ordre;
+	}
+
+	public void setOrdre(int ordre) {
+		this.ordre = ordre;
 	}
 	
 	

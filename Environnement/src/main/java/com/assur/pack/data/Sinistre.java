@@ -4,13 +4,24 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
-import javax.validation.constraints.Past;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Proxy;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 
@@ -23,10 +34,12 @@ public class Sinistre implements Serializable{
 	@NotEmpty
      private String type_sinistre;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
      private Date date_sinistre;
 	@NotEmpty
      private String lieu_sinistre;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
      private Date date_decla;
 	@Temporal(TemporalType.DATE)
      private Date date_cloture;
@@ -36,12 +49,14 @@ public class Sinistre implements Serializable{
      @ManyToMany
      @LazyCollection(LazyCollectionOption.FALSE)
      private List<Intervenant> intrervenant;
-     @OneToMany(mappedBy="sinistre")
+     @OneToMany(mappedBy="sinistre",cascade=CascadeType.REMOVE)
      @LazyCollection(LazyCollectionOption.FALSE)
      private List<Etat> etat_sinistre;
      @OneToMany(mappedBy="sinistre")
+     @LazyCollection(LazyCollectionOption.FALSE)
      private List<Document_sinist> doc_sinistre;
      @OneToMany(mappedBy="sinistre")
+     @LazyCollection(LazyCollectionOption.FALSE)
      private List<Rapport> rapport;
      @OneToOne
      private Indemnisation indemnisation;

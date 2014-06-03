@@ -24,5 +24,9 @@
 	<context:component-scan base-package="com.assur.pack" />
 	
 	
-	
+	<!-- Configuration Upload -->
+	<beans:bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="1000000"></beans:property>
+	</beans:bean>
 </beans:beans>

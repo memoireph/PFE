@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
+
+<aop:aspectj-autoproxy />
   <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
     <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
     <property name="url" value="jdbc:mysql://localhost:3306/gestion_sinistre"></property>
@@ -23,6 +27,8 @@
      </property>
   </bean>
 
+
+
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 	<property name="persistenceUnitManager" ref="persistenceUnitManager"></property>
 	<property name="persistenceUnitName" value="UP_ASSUR"></property>
@@ -33,6 +39,7 @@
   </bean>
 
   <tx:annotation-driven transaction-manager="transactionManager"/>
+ 
 
   <context:annotation-config></context:annotation-config>
 <bean id="indemnisationdao" class="com.assur.pack.daoImp.IndemnisationDaoImpl"></bean>
@@ -41,6 +48,7 @@
 <property name="etatdao" ref="etatdao"></property>
 <property name="intervenantdao" ref="intervenantdao"></property>
 <property name="document" ref="documentdao"></property>
+<property name="rapportdao" ref="rapportdao"></property>
 </bean>
 <bean name="garantie" class="com.assur.pack.daoImp.GarantiesDaoImpl"></bean>
 <bean id="documentdao" class="com.assur.pack.daoImp.DocumentDaoImpl"></bean>
@@ -130,9 +138,33 @@
   <bean id="quittancemetier" class="com.assur.pack.metierImpl.QuittanceMetierImpl">
     <property name="quittancedao" ref="quittancedao"></property>
   </bean>
-  
+  <bean id="documentmetier" class="com.assur.pack.metierImpl.DocumentMetierImpl">
+  <property name="documentdao" ref="documentdao"></property>
+  </bean>
+  <bean id="etatMetier" class="com.assur.pack.metierImpl.EtatMetierImpl">
+  <property name="etatdao" ref="etatdao"></property>
+  </bean>
   <!-- Bean de conversion dozer -->
  <bean id="org.dozer.mapper" class="org.dozer.DozerBeanMapper"/>
  
- 
+ <!--  Programmation orienté aspect -->
+ <bean id="sinistrehMetier" class="com.assur.pack.metierImpl.SinistreHMetierImpl">
+ <property name="sinistrehdao" ref="sinistreH"></property>
+ </bean>
+ <bean id ="Historisation" class="com.assur.pack.Aspects.Historisation">
+ <property name="sinhMetier" ref="sinistrehMetier"></property>
+ </bean>
+ <bean id="sinistreController" class="com.assur.pack.controller.SinistreController"></bean>
+ <bean id="AspectJ" class="com.assur.pack.Aspects.AspectEtats">
+ <property name="sinMetier" ref="sinistremetier"></property>
+ <property name="etatmetier" ref="etatMetier"></property>
+ <property name="rapport" ref="rapportmetier"></property>
+ </bean>
+ <!--  
+  <aop:aspectj-autoproxy />
+<bean id="sinistrehMetier" class="com.assur.pack.metierImpl.SinistreHMetierImpl"></bean>
+ <bean id ="Historisation" class="com.assur.pack.Aspects.Historisation">
+ <property name="sinhMetier" ref="sinistrehMetier"></property>
+ </bean>
+ -->
 </beans>

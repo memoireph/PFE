@@ -1,18 +1,18 @@
 package com.assur.pack.daoImp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.Query;
 
 import com.assur.pack.dao.DocumentDao;
 import com.assur.pack.dao.EtatDao;
 import com.assur.pack.dao.IndemnisationDao;
 import com.assur.pack.dao.IntervenantDao;
+import com.assur.pack.dao.RapportDao;
 import com.assur.pack.dao.SinistreDao;
 import com.assur.pack.data.Contrat;
 import com.assur.pack.data.Document_sinist;
@@ -28,6 +28,7 @@ public class SinistreDaoImpl implements SinistreDao {
    private IndemnisationDao indemdao;
    private IntervenantDao intervenantdao;
    private EtatDao etatdao;
+   private RapportDao rapportdao;
    private DocumentDao document;
 	@PersistenceContext
 	EntityManager em;
@@ -114,6 +115,7 @@ public class SinistreDaoImpl implements SinistreDao {
 		sinistre.getEtat_sinistre().add(E);
 		E.setSinistre(sinistre);
 		em.persist(E);
+		em.merge(sinistre);
 	}
 
 	@Override
@@ -221,6 +223,55 @@ public class SinistreDaoImpl implements SinistreDao {
 		em.merge(S);
 }
 
+	@Override
+	public List<Document_sinist> listDocumentSinistre(Long ids) {
+		Sinistre sinistre=getSinistreById(ids);
+		return sinistre.getDoc_sinistre();
+	}
+	
+	
+
+@Override
+public void modifierContratSinistre(Long ids, Contrat contrat) {
+	Sinistre sinistre=getSinistreById(ids);
+	contrat.getSinistre().add(sinistre);
+	sinistre.setContrat(contrat);
+	em.merge(sinistre);
+	em.merge(contrat);
+}
+	
+
+@Override
+public void RetirerIntrSinistr(Long id_sinistre, Intervenant Intr){
+	Long id_intr=Intr.getId_intr();
+	Query q=em.createNativeQuery("delete from intervenant_sinistre where sinistre_id_sinistre=:ids and Intervenant_id_intr=:idi");
+	Query qq=em.createNativeQuery("delete from sinistre_intervenant where Sinistre_id_sinistre=:ids and intrervenant_id_intr=:idi");
+	Query qR=em.createNativeQuery("delete from rapport where medecin_id_intr=:idi and sinistre_id_sinistre=:ids");
+	q.setParameter("ids", id_sinistre);
+	q.setParameter("idi", id_intr);
+	qq.setParameter("ids", id_sinistre);
+	qq.setParameter("idi", id_intr);
+	qR.setParameter("ids", id_sinistre);
+	qR.setParameter("idi", id_intr);
+   q.executeUpdate();
+   qq.executeUpdate();
+   qR.executeUpdate();
+}
+
+
+@Override
+public void listpardefault(Long ids) {
+	   Sinistre s=getSinistreById(ids);
+        addEtat(new Etat("Déclaration sinistre", 1, s.getDate_decla(), true, null, s), ids);
+        addEtat(new Etat("Avis de sinistre envoyé", 2, null, false, null, s), ids);
+        addEtat(new Etat("Réponse de prise en charger", 3, null, false, null, s), ids);
+        addEtat(new Etat("Désignation medecin", 4, null, false, null, s), ids);
+        addEtat(new Etat("Rapport d'expertise", 5, null, false, null, s), ids);
+        addEtat(new Etat("2éme rapport d'expertise", 6, null, false, null, s), ids);
+        addEtat(new Etat("Proposition d'indemnité", 7, null, false, null, s), ids);
+        addEtat(new Etat("Réponse sur l'indemnité", 8, null, false, null, s), ids);
+
+}
 @Override
 public void addSinistreH(SinistreH h, Long id_sinistre) {
 	Sinistre s=getSinistreById(id_sinistre);
@@ -229,5 +280,26 @@ public void addSinistreH(SinistreH h, Long id_sinistre) {
 	em.persist(h);
 	em.merge(s);
 }
+
+@Override
+public Sinistre getSinistreByRapport(Long idR) {
+	return rapportdao.getRapportById(idR).getSinistre();
+}
+
+public void setRapportdao(RapportDao rapportdao) {
+	this.rapportdao = rapportdao;
+}
  
+@Override
+public List<Sinistre> SinistreAnneeCours() {
+	List<Sinistre> sin= new ArrayList<Sinistre>();
+	
+	for(Sinistre S : listSinistre()){
+		if(S.getDate_decla().getYear()==new Date().getYear()){
+			sin.add(S);
+		}
+	}
+	
+	return sin;
+}
 }

@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,7 +37,7 @@ public class Contrat implements Serializable{
     @OneToMany(mappedBy="contrat")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Sinistre> sinistre;
-    @OneToMany(mappedBy="contrat")
+    @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Garanties> garanties;
     

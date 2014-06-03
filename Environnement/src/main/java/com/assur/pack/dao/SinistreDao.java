@@ -23,7 +23,12 @@ public interface SinistreDao {
 	public SinistreDTO createBean(Sinistre sinistre);
 	public Sinistre createSinistre(SinistreDTO sinsitredto);
 	void addSinistreH(SinistreH h, Long id_sinistre);
-	
+	public List<Document_sinist> listDocumentSinistre(Long ids);
+	public void modifierContratSinistre(Long ids, Contrat contrat);
+	public void RetirerIntrSinistr(Long id_sinistre, Intervenant Intr);
+	public void listpardefault(Long ids);
+	public Sinistre getSinistreByRapport(Long idR);
+	List<Sinistre> SinistreAnneeCours();
 
 
 }

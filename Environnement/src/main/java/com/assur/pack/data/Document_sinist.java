@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -20,8 +21,11 @@ public class Document_sinist implements Serializable {
 	private String type;
 	@ManyToOne
 	private Sinistre sinistre;
-	
-	
+	private String description;
+	@NotEmpty
+	@Lob
+	private byte[] fichier;
+	private Long taille;
 	public Document_sinist() {
 		super();
 	}
@@ -63,6 +67,30 @@ public class Document_sinist implements Serializable {
 
 	public void setSinistre(Sinistre sinistre) {
 		this.sinistre = sinistre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public byte[] getFichier() {
+		return fichier;
+	}
+
+	public void setFichier(byte[] fichier) {
+		this.fichier = fichier;
+	}
+
+	public Long getTaille() {
+		return taille;
+	}
+
+	public void setTaille(Long taille) {
+		this.taille = taille;
 	}
 	
 	

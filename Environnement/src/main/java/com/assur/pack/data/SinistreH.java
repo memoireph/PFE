@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -14,9 +16,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class SinistreH implements Serializable {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id_histo;
+	public Long getId_histo() {
+		return id_histo;
+	}
+
+	public void setId_histo(Long id_histo) {
+		this.id_histo = id_histo;
+	}
+
 	@Temporal(TemporalType.DATE)
      private Date date_historique;
-	
+	 
 	 private String modifie_par;
 	
     private String mode_gestion;
@@ -33,11 +45,19 @@ public class SinistreH implements Serializable {
 	 private String statut;
      private String qualification;
      private Double reserve;
-
+     private Long id_sinistre;
 	//private Sinistre sinistre;
    
      
      
+	public Long getId_sinistre() {
+		return id_sinistre;
+	}
+
+	public void setId_sinistre(Long id_sinistre) {
+		this.id_sinistre = id_sinistre;
+	}
+
 	public SinistreH() {
 		super();
 	}

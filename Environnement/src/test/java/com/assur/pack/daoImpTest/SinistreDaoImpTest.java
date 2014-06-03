@@ -39,7 +39,7 @@ public class SinistreDaoImpTest {
 	
 	@Test
 	public void testGetSinistreById(){
-		assertNotNull(sinistredao.getSinistreById(new Long(1)));
+		assertNotNull(sinistredao.getSinistreById(new Long(28)));
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class SinistreDaoImpTest {
 	public void testAddEtat(){
 		
 		Etat etat=new Etat("declaration",new Date(),new Date(),true,null,null);
-		sinistredao.addEtat(etat,new Long(1));
+		sinistredao.addEtat(etat,new Long(28));
 	}
 
 	@Test 

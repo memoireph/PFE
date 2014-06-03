@@ -13,17 +13,14 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
-public abstract class Rapport implements Serializable{
+public class Rapport implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Long id_rapport;
 	@Temporal(TemporalType.DATE)
 	protected Date date_creation;
-	@NotEmpty
 	protected String intitule;
-	@NotEmpty
 	protected String nomdoc;
-	@NotEmpty
 	protected String description;
 	@ManyToOne
 	private Sinistre sinistre;

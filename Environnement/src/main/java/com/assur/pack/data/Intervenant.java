@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -35,6 +37,7 @@ public abstract class Intervenant implements Serializable{
 	@JoinTable(name = "INT_TIER", joinColumns = @JoinColumn(name = "INT_ID"), inverseJoinColumns = @JoinColumn(name = "TIER_ID"))
 	protected List<Tiers> tiers;
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	protected List<Sinistre> sinistre;
 	
 	

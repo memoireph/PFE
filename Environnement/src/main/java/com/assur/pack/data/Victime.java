@@ -9,6 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Victime extends Intervenant {
 	@NotEmpty
@@ -27,6 +28,7 @@ public class Victime extends Intervenant {
 	private String CNSS;
 	private String passeport;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Past
 	private Date date_naissance;
 	

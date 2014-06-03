@@ -1,7 +1,10 @@
 package com.assur.pack.data;
 
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Rapport_expert extends Rapport {
@@ -10,6 +13,12 @@ public class Rapport_expert extends Rapport {
 	 private String cause;
 	 private String etat_avant;
 	 private String blessure;
+	 
+	 @NotEmpty
+	 @Lob
+		private byte[] fichier;
+		private String type;
+		private Long taille;
 	 @ManyToOne
 	 private Medecin medecin;
 	 
@@ -66,6 +75,30 @@ public class Rapport_expert extends Rapport {
 
 	public void setMedecin(Medecin medecin) {
 		this.medecin = medecin;
+	}
+
+	public byte[] getFichier() {
+		return fichier;
+	}
+
+	public void setFichier(byte[] fichier) {
+		this.fichier = fichier;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Long getTaille() {
+		return taille;
+	}
+
+	public void setTaille(Long taille) {
+		this.taille = taille;
 	}
 	 
 	 

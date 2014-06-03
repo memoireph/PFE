@@ -3,30 +3,36 @@ package com.assur.pack.data;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Personel  implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_personnel;
-	@Size(min=6)
+	@NotEmpty
 	private String login;
-	@Size(min=6)
+	@NotEmpty
 	private String motdepasse;
 	@NotEmpty
 	private String nom;
 	@NotEmpty
 	private String prenom;
-	@NotEmpty
-	private String role;//gestionnaire ou regleur
+	@Email
+	private String email;
+	private boolean actived;
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="id_personnel")
+	private List<Role> roles;//gestionnaire où regleur où admin
 	@OneToMany(mappedBy="personel")
 	private List<Avis> avis;
 	@ManyToOne
@@ -37,17 +43,57 @@ public class Personel  implements Serializable{
 		super();
 	}
 
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public boolean isActived() {
+		return actived;
+	}
+
+
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+
+
 	public Personel(String login, String motdepasse, String nom, String prenom,
-			String role, List<Avis> avis, Compagnie compagnie) {
+			boolean actived, List<Avis> avis, Compagnie compagnie, String email) {
 		super();
 		this.login = login;
 		this.motdepasse = motdepasse;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.role = role;
+		this.actived = actived;
 		this.avis = avis;
 		this.compagnie = compagnie;
+		this.email=email;
 	}
+
+
+
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+
 
 	public Long getId_personnel() {
 		return id_personnel;
@@ -89,13 +135,6 @@ public class Personel  implements Serializable{
 		this.prenom = prenom;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public List<Avis> getAvis() {
 		return avis;
